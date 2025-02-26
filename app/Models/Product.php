@@ -12,6 +12,7 @@ class Product extends Model
     use HasFactory;
 
     protected $table = 'products';
+    protected $with = ['category'];
 
     protected $fillable = [
         'title',
@@ -25,6 +26,7 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
+    // Без надобности, но пусть будет. В жадную загрузку не включаем.
     public function order(): HasMany
     {
         return $this->hasMany(Order::class);
