@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('custom_name');
+            $table->string('customer_name');
             $table->foreignId('product_id')->nullable()->constrained('products')->nullOnDelete();
             $table->timestamp('order_date')->useCurrent();
             $table->enum('status', ['new', 'completed'])->default('new');
