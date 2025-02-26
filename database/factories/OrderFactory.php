@@ -16,7 +16,7 @@ class OrderFactory extends Factory
         return [
             'customer_name' => $this->faker->name(),
             'product_id' => Product::factory(),
-            'order_date' => $this->faker->dateTimeThisMonth(),
+            'order_date' => Carbon::now(),
             'status' => $this->faker->randomElement(['new', 'completed']),
             'comment' => $this->faker->word(),
             'created_at' => Carbon::now(),

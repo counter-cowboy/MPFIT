@@ -13,7 +13,8 @@ class Order extends Model
 
     protected $table = 'orders';
     protected $fillable = [
-        'custom_name',
+        'product_id',
+        'customer_name',
         'order_date',
         'status',
         'comment',

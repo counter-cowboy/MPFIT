@@ -9,10 +9,9 @@ class OrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'custom_name' => ['required'],
-            'order_date' => ['required', 'date'],
-            'status' => ['required'],
-            'comment' => ['required'],
+            'customer_name' => ['required', 'string'],
+            'product_id' => ['required', 'integer'],
+            'comment' => ['required', 'string'],
         ];
     }
 

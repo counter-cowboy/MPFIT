@@ -1,37 +1,36 @@
 @extends('layouts.main')
 @section('content')
-    {{ $products->links() }}
+    {{ $orders->links() }}
     <table class="table">
         <thead>
         <tr>
             <th scope="col">ID</th>
-            <th scope="col">Product name</th>
-            <th scope="col">Description</th>
-            <th scope="col">Category</th>
-            <th scope="col">Price</th>
+            <th scope="col">Order date</th>
+            <th scope="col">Customer name</th>
+            <th scope="col">Status</th>
+            <th scope="col">Cost</th>
         </tr>
         </thead>
         <tbody>
-        <a href="{{ route('products.create') }}">
+        <a href="{{ route('orders.create') }}">
             <button type="button" class="btn btn-primary">
-                Create product
+                Create order
             </button>
         </a>
-        @foreach($products as $product)
+        @foreach($orders as $order)
             <tr>
 
-
-                <th scope="row">    {{ $product->id }}   </th>
-                <td> {{$product->title}}</td>
-                <td><a href="{{ route('products.show', $product) }}">  {{ $product->description }} </a></td>
-                <td>{{ $product->category->title }}</td>
-                <td>{{ $product->price }}</td>
+                <th scope="row">    {{ $order->id }}   </th>
+                <td> {{ \Carbon\Carbon::parse(  $order->order_date  )  }}</td>
+                <td> {{$order->customer_name}}</td>
+                <td><a href="{{ route('orders.show', $order) }}">{{ $order->status }} </a></td>
+                <td>{{ $order->product->price}}</td>
 
                 <td>
-                    <a href="{{ route('products.update', $product) }}">
+                    <a href="{{ route('orders.update', $order) }}">
                         <button type="button" class="btn btn-success">Update</button>
                     </a>
-                    <form action="{{ route('products.destroy', $product) }}" method="post">
+                    <form action="{{ route('orders.destroy', $order) }}" method="post">
                         @csrf
                         @method('delete')
                         <button type="submit" class="btn btn-danger" onclick="return confirm('Sure?')">Delete</button>
@@ -46,5 +45,5 @@
 
         </tbody>
     </table>
-    {{ $products->links() }}
+    {{ $orders->links() }}
 @endsection
